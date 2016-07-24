@@ -33,8 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_sendFriend"
                 android:text="发好友"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -59,8 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="发群"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -86,8 +84,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_sendNear"
                 android:text="发附近"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -113,8 +110,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_addFriend"
                 android:text="加好友"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -149,8 +145,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_addgroup"
                 android:text="加群"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -176,8 +171,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_autoapply"
                 android:text="应答"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -202,8 +196,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_line"
                 android:text="流程"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
-                android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -229,7 +222,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_set"
                 android:text="设置"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
                 android:textSize="12sp" />
 
         </LinearLayout>
