@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -25,4 +28,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.3.0'
     compile project(':uis')
     compile project(':utils')
+    compile files('libs/android-async-http-1.4.6.jar')
 }
