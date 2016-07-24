@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="kswThumbDrawable" format="reference" />
+        <attr name="kswThumbColor" format="color|reference" />
+        <attr name="kswThumbMargin" format="dimension|reference" />
+        <attr name="kswThumbMarginTop" format="dimension|reference" />
+        <attr name="kswThumbMarginBottom" format="dimension|reference" />
+        <attr name="kswThumbMarginLeft" format="dimension|reference" />
+        <attr name="kswThumbMarginRight" format="dimension|reference" />
+        <attr name="kswThumbWidth" format="dimension|reference" />
+        <attr name="kswThumbHeight" format="dimension|reference" />
+        <attr name="kswThumbRadius" format="dimension|reference" />
+        <attr name="kswBackRadius" format="dimension|reference" />
+        <attr name="kswBackDrawable" format="reference" />
+        <attr name="kswBackColor" format="color|reference" />
+        <attr name="kswFadeBack" format="boolean" />
+        <attr name="kswBackMeasureRatio" format="float" />
+        <attr name="kswAnimationDuration" format="integer" />
+        <attr name="kswTintColor" format="color|reference" />
+        <attr name="kswTextOn" format="string" />
+        <attr name="kswTextOff" format="string" />
+        <attr name="kswTextMarginH" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="MaterialSpinner">
+        <attr name="ms_arrow_tint" format="color" />
+        <attr name="ms_hide_arrow" format="boolean" />
+        <attr name="ms_background_color" format="color" />
+        <attr name="ms_text_color" format="color" />
+        <attr name="ms_dropdown_max_height" format="dimension" />
+        <attr name="ms_dropdown_height" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="wpedittext__style">
+        <attr name="wpedittext__hint" format="reference"/>
+        <attr name="wpedittext__min_length" format="integer"/>
+        <attr name="wpedittext__valid_message" format="reference"/>
+        <attr name="wpedittext__invalid_message" format="reference"/>
+        <attr name="wpedittext__empty_message" format="reference"/>
+        <attr name="wpedittext__underline_color" format="reference"/>
+        <attr name="wpedittext__text_color" format="reference"/>
+        <attr name="wpedittext__hint_color" format="reference"/>
+        <attr name="wpedittext__header_icon" format="reference"/>
+        <attr name="wpedittext__type" format="enum">
+            <enum name="alpha" value="0"/>
+            <enum name="alphanumeric" value="1"/>
+            <enum name="email" value="2"/>
+            <enum name="password" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
