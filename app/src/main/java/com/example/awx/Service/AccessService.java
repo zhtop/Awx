@@ -83,30 +83,30 @@ public class AccessService extends AccessibilityService {
         Notification notification = new Notification();
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.my_notify);
         if (actionType == ActionType.SendFriend && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.s_u_s);
+            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.s_user_s);
         } else {
-            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.s_u_n);
+            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.s_user_n);
         }
         if (actionType == ActionType.SendGroup && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.s_g_s);
+            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.s_group_s);
         } else {
-            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.s_g_n);
+            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.s_group_n);
         }
         if (actionType == ActionType.SendNear && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.s_n_s);
+            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.s_near_s);
         } else {
-            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.s_n_n);
+            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.s_near_n);
         }
         if (actionType == ActionType.AddFriend && running) {
-            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.a_u_s);
+            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.group_s);
         } else {
-            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.a_u_n);
+            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.group_n);
         }
 
         if (actionType == ActionType.AddGroup && running) {
-            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.a_g_s);
+            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.group_s);
         } else {
-            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.a_g_n);
+            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.group_n);
         }
         if (actionType == ActionType.AutoApply && running) {
             remoteViews.setImageViewResource(R.id.n_img_autoapply, R.drawable.auto_s);
