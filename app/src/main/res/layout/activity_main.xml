@@ -1,16 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.awx.MainActivity">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top"
+        android:id="@+id/main_top_linear">
+
+    </LinearLayout>
+
+    <com.example.awx.TabStrip
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/main_tabstrip"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="false"
+        android:layout_above="@+id/man_viewpager"
+        android:background="#FF000000" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/background_tab_pressed"
+        android:id="@+id/main_spot_line"
+        android:layout_below="@+id/main_tabstrip"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="授权状态:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="12dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:id="@+id/awx_spot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="试用期"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/awx_spot_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/awx_ids_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@null"
+            android:text="复制"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/man_viewpager"
+        android:layout_below="@+id/main_top_linear"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_tabs_diagonal"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/app_name"
+        android:id="@+id/textView9"
+        android:textColor="@color/white"
+        android:drawableLeft="@mipmap/ic_launcher"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:textSize="16sp" />
+
 </RelativeLayout>
