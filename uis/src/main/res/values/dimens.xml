@@ -10,8 +10,8 @@
 	<dimen name="ksw_md_thumb_shadow_size">21dp</dimen>
 	<dimen name="ksw_md_thumb_shadow_offset">2dp</dimen>
 
-	<dimen name="ms__padding_left">24dp</dimen>
-	<dimen name="ms__padding_top">12dp</dimen>
-	<dimen name="ms__item_height">48dp</dimen>
+	<dimen name="ms__padding_left">12dp</dimen>
+	<dimen name="ms__padding_top">6dp</dimen>
+	<dimen name="ms__item_height">24dp</dimen>
 
 </resources>
