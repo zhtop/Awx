@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.example.utils.Strs;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,6 @@ public class Progress {
     private String packageName;
     private Sets sets = new Sets();
     private long sleep;
-    private String tipString;
     private int totalCount = 0;
     private Handler handler;
     private String chatLast = "", chatNow = "", chatWord = "";
@@ -72,19 +73,17 @@ public class Progress {
         return this.sets;
     }
 
-    public String getTipString() {
-        return this.tipString;
-    }
-
     public void set(StepType paramStepType1, StepType paramStepType2, String paramString) {
         try {
             Thread.sleep(this.sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        if (!Strs.isBlank(paramString)) {
+            pushMsg(paramString);
+        }
         this.last = paramStepType1;
         this.next = paramStepType2;
-        this.tipString = paramString;
     }
 
     public void set(StepType paramStepType1, StepType paramStepType2, String paramString, long paramLong) {
@@ -94,9 +93,11 @@ public class Progress {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        if (!Strs.isBlank(paramString)) {
+            pushMsg(paramString);
+        }
         this.last = paramStepType1;
         this.next = paramStepType2;
-        this.tipString = paramString;
     }
 
     public void setActionType(int paramActionType) {
@@ -125,10 +126,6 @@ public class Progress {
 
     public void setSets(Sets paramSets) {
         this.sets = paramSets;
-    }
-
-    public void setTipString(String paramString) {
-        this.tipString = paramString;
     }
 
     public int getTotalCount() {
