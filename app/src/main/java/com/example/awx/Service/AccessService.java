@@ -10,13 +10,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.LinearLayout;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 import com.example.awx.MainActivity;
 import com.example.awx.R;
@@ -27,9 +33,10 @@ public class AccessService extends AccessibilityService {
     private NotificationManager notificationManager;
     private Handler handler;
     private WindowManager windowManager;
-    private WindowManager.LayoutParams wLayoutParams;
     private LayoutInflater layoutInflater;
     private MyThread myThread;
+    private WindowManager.LayoutParams wLayoutParams;
+    private View floatView;
 
 
     @Override
@@ -42,13 +49,38 @@ public class AccessService extends AccessibilityService {
 
         boolean running = Pres.getBoolean(getApplicationContext(), "running", false);
         int actionType = Pres.getInt(getApplicationContext(), "actionType", -1);
-        Notification notification = creatNotify(actionType, running);
+        final Notification notification = creatNotify(actionType, running);
         startForeground(Utils.NOTIFY_ID, notification);
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 0://更新通知栏目
+                        notificationManager.notify(Utils.NOTIFY_ID, creatNotify(msg.getData().getInt("actionType"), msg.getData().getBoolean("running")));
+                        break;
+                    case 1:
+                        buildFloatView(msg.getData().getString("msg"));//常规消息显示
+                        break;
+                    case 2:
+                        try {
+                            windowManager.removeView(floatView);
+                        } catch (Exception e) {
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
 
         myThread = new MyThread(this, handler);
         myThread.start();
 
+        buildFloatView("闪闪助手准备就绪!点我消失");
+
     }
+
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -65,6 +97,35 @@ public class AccessService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
+
+    }
+
+    private void buildFloatView(String str) {
+        if (floatView == null) {
+            floatView = layoutInflater.inflate(R.layout.my_toast, null, false);
+        }
+        TextView floatOne_text = (TextView) floatView.findViewById(R.id.t_text);
+        floatOne_text.setText(str);
+        floatOne_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler.sendEmptyMessage(2);
+            }
+        });
+        if (wLayoutParams == null) {
+            wLayoutParams = new WindowManager.LayoutParams();
+            wLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+            wLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+            wLayoutParams.format = PixelFormat.RGBA_8888;
+            wLayoutParams.gravity = Gravity.CENTER;
+            wLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            wLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        }
+        try {
+            windowManager.updateViewLayout(floatView, wLayoutParams);
+        } catch (Exception e) {
+            windowManager.addView(floatView, wLayoutParams);
+        }
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.awx.Service;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -25,7 +26,7 @@ public class Progress {
     private String tipString;
     private int totalCount = 0;
     private Handler handler;
-    private String chatLast="", chatNow="",chatWord="";
+    private String chatLast = "", chatNow = "", chatWord = "";
 
     public Progress(String paramString, int paramInt, Handler handler) {
         this.packageName = paramString;
@@ -149,7 +150,10 @@ public class Progress {
     public void pushMsg(String str) {
         if (handler != null) {
             Message message = new Message();
-
+            message.what = 1;
+            Bundle bundle = new Bundle();
+            bundle.putString("msg", str);
+            message.setData(bundle);
             handler.sendMessage(message);
         }
     }

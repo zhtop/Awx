@@ -164,34 +164,8 @@ public class QInfos {
         return false;
     }
 
-    //    public static AccessibilityNodeInfo friendSearchResult(AccessibilityNodeInfo paramAccessibilityNodeInfo, String paramString) {
-//        paramAccessibilityNodeInfo = paramAccessibilityNodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mobileqq:id/title").iterator();
-//        while (paramAccessibilityNodeInfo.hasNext()) {
-//            AccessibilityNodeInfo localAccessibilityNodeInfo = (AccessibilityNodeInfo) paramAccessibilityNodeInfo.next();
-//            if ((!Strs.isEmpty(localAccessibilityNodeInfo.getText())) && (localAccessibilityNodeInfo.getText().toString().equals(paramString))) {
-//                int i = 0;
-//                label59:
-//                CharSequence localCharSequence;
-//                if (i < localAccessibilityNodeInfo.getParent().getChildCount()) {
-//                    localCharSequence = localAccessibilityNodeInfo.getParent().getChild(i).getText();
-//                    if (!Strs.isEmpty(localCharSequence)) {
-//                        break label98;
-//                    }
-//                }
-//                label98:
-//                while (!localCharSequence.toString().contains("����������")) {
-//                    i += 1;
-//                    break label59;
-//                    break;
-//                }
-//                return localAccessibilityNodeInfo.getParent();
-//            }
-//        }
-//        return null;
-//    }
-
     /*ok*/
-    public static List<String> groupData(AccessibilityNodeInfo root, long sleep) {
+    public static List<String> dataFromHomeClick(AccessibilityNodeInfo root, long sleep) {
         List<String> groupData = new ArrayList<String>();
         AccessibilityNodeInfo mygroup = Nodeinfos.findByText(root, "我的群");
         if (mygroup != null) {
