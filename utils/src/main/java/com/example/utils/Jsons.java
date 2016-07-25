@@ -14,6 +14,7 @@ import java.util.Map;
  * Created by john on 2016/7/24.
  */
 public class Jsons {
+    public static boolean isPrintException = true;
     public static List<Map<String, String>> parseList(String jsonStr) {
         if (jsonStr == null || "".equals(jsonStr)) {
             return null;
@@ -37,4 +38,37 @@ public class Jsons {
         }
         return retList;
     }
+
+    public static String getString(String jsonData, String key, String defaultValue) {
+        if (Strs.isEmpty(jsonData)) {
+            return defaultValue;
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            return getString(jsonObject, key, defaultValue);
+        } catch (JSONException e) {
+            if (isPrintException) {
+                e.printStackTrace();
+            }
+            return defaultValue;
+        }
+    }
+
+    public static String getString(JSONObject jsonObject, String key, String defaultValue) {
+        if (jsonObject == null || Strs.isEmpty(key)) {
+            return defaultValue;
+        }
+
+        try {
+            return jsonObject.getString(key);
+        } catch (JSONException e) {
+            if (isPrintException) {
+                e.printStackTrace();
+            }
+            return defaultValue;
+        }
+    }
+
+
 }

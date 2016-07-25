@@ -25,6 +25,7 @@ public class Progress {
     private String tipString;
     private int totalCount = 0;
     private Handler handler;
+    private String chatLast="", chatNow="",chatWord="";
 
     public Progress(String paramString, int paramInt, Handler handler) {
         this.packageName = paramString;
@@ -95,7 +96,7 @@ public class Progress {
         this.last = paramStepType1;
         this.next = paramStepType2;
         this.tipString = paramString;
-     }
+    }
 
     public void setActionType(int paramActionType) {
         this.actionType = paramActionType;
@@ -151,5 +152,29 @@ public class Progress {
 
             handler.sendMessage(message);
         }
+    }
+
+    public String getChatLast() {
+        return chatLast;
+    }
+
+    public void setChatLast(String chatLast) {
+        this.chatLast = chatLast;
+    }
+
+    public String getChatNow() {
+        return chatNow;
+    }
+
+    public void setChatNow(String chatNow) {
+        this.chatNow = chatNow;
+    }
+
+    public String getChatWord() {
+        return chatWord;
+    }
+
+    public void setChatWord(String chatWord) {
+        this.chatWord = chatWord;
     }
 }

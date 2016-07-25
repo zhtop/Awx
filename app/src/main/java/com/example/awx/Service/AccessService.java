@@ -5,10 +5,13 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
@@ -44,6 +47,7 @@ public class AccessService extends AccessibilityService {
 
         myThread = new MyThread(this, handler);
         myThread.start();
+
     }
 
     @Override
@@ -83,43 +87,43 @@ public class AccessService extends AccessibilityService {
         Notification notification = new Notification();
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.my_notify);
         if (actionType == ActionType.SendFriend && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.path_friend);
+            remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.path_friend_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_sendFriend, R.drawable.path_friend);
         }
         if (actionType == ActionType.SendGroup && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.path_group);
+            remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.path_group_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_sendGroup, R.drawable.path_group);
         }
         if (actionType == ActionType.SendNear && running) {
-            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.path_near);
+            remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.path_near_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_sendNear, R.drawable.path_near);
         }
         if (actionType == ActionType.AddFriend && running) {
-            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.path_friend);
+            remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.path_friend_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_addFriend, R.drawable.path_friend);
         }
 
         if (actionType == ActionType.AddGroup && running) {
-            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.path_group);
+            remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.path_group_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_addgroup, R.drawable.path_group);
         }
         if (actionType == ActionType.AutoApply && running) {
-            remoteViews.setImageViewResource(R.id.n_img_autoapply, R.drawable.path_chat);
+            remoteViews.setImageViewResource(R.id.n_img_autoapply, R.drawable.path_chat_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_autoapply, R.drawable.path_chat);
         }
         if (actionType == ActionType.Sche && running) {
-            remoteViews.setImageViewResource(R.id.n_img_line, R.drawable.path_sche);
+            remoteViews.setImageViewResource(R.id.n_img_line, R.drawable.path_sche_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_line, R.drawable.path_sche);
         }
         if (actionType == ActionType.Set && running) {
-            remoteViews.setImageViewResource(R.id.n_img_set, R.drawable.path_set);
+            remoteViews.setImageViewResource(R.id.n_img_set, R.drawable.path_set_s);
         } else {
             remoteViews.setImageViewResource(R.id.n_img_set, R.drawable.path_set);
         }

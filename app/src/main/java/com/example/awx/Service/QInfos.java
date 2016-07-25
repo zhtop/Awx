@@ -29,6 +29,21 @@ public class QInfos {
     public static final String title_right = "com.tencent.mobileqq:id/ivTitleBtnRightText";
     public static final String titles_container = "com.tencent.mobileqq:id/rlCommenTitle";
     public static final String more_chat_head = " com.tencent.mobileqq:id/head";
+    public static final String chat_item = "com.tencent.mobileqq:id/chat_item_content_layout";
+
+
+    public static AccessibilityNodeInfo findLastChatItemOfText(AccessibilityNodeInfo root) {
+        List<AccessibilityNodeInfo> chatList = root.findAccessibilityNodeInfosByViewId(chat_item);
+        if (chatList.size() > 0) {
+            for (int i = chatList.size() - 1; i > 0; i--) {
+                String className = (Strs.isEmpty(chatList.get(i).getClassName()) ? "" : chatList.get(i).getClassName().toString());
+                if (className.equals(Nodeinfos.vText)) {
+                    return chatList.get(i);
+                }
+            }
+        }
+        return null;
+    }
 
     /*ok*/
     public static AccessibilityNodeInfo findNearGroup(AccessibilityNodeInfo root) {

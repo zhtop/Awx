@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Awx</string>
+    <string name="app_name">闪闪吧</string>
+    <string name="acc_desc">Awx</string>
+    <string name="auto_replay">闪闪吧自动应答服务</string>
 </resources>

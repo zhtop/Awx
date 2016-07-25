@@ -1,10 +1,12 @@
 package com.example.awx.Service;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import java.util.UUID;
  */
 public class Utils {
     public static int NOTIFY_ID = 100;
+    private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
 
     public static String getMsgs(SQLiteDatabase sqLiteDatabase, int types) {
         Cursor cursor = sqLiteDatabase.query("sendstrs", null, "types=" + types, null, null, null, "RANDOM() limit 1");
@@ -81,6 +84,26 @@ public class Utils {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
+    }
+
+
+
+    public static boolean isListenNotify(Context context) {
+        String pkgName = context.getPackageName();
+        final String flat = Settings.Secure.getString(context.getContentResolver(),
+                ENABLED_NOTIFICATION_LISTENERS);
+        if (!TextUtils.isEmpty(flat)) {
+            final String[] names = flat.split(":");
+            for (int i = 0; i < names.length; i++) {
+                final ComponentName cn = ComponentName.unflattenFromString(names[i]);
+                if (cn != null) {
+                    if (TextUtils.equals(pkgName, cn.getPackageName())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static void mi(String tags, String str) {
