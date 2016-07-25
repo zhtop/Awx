@@ -33,7 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/n_img_sendFriend"
                 android:text="发好友"
-                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
+                android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent.Title"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
