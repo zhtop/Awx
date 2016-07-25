@@ -1,7 +1,7 @@
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="48dp"
+    android:width="@dimen/notify_icon_wh"
+    android:height="@dimen/notify_icon_wh"
     android:viewportHeight="48"
     android:viewportWidth="48">
     <path
