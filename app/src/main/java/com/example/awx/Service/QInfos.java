@@ -30,6 +30,23 @@ public class QInfos {
     public static final String titles_container = "com.tencent.mobileqq:id/rlCommenTitle";
     public static final String more_chat_head = " com.tencent.mobileqq:id/head";
 
+    /*ok*/
+    public static AccessibilityNodeInfo friendSearchResult(AccessibilityNodeInfo root, String name) {
+        AccessibilityNodeInfo parent = Nodeinfos.matchNodeByClass(root, Nodeinfos.vAList);
+        if (parent == null ? false : parent.getChildCount() > 2) {
+            int count = 3 > parent.getChildCount() ? parent.getChildCount() : 3;
+            for (int i = 0; i < count; i++) {
+                AccessibilityNodeInfo item = parent.getChild(i);
+                if (item != null) {
+                    AccessibilityNodeInfo res = Nodeinfos.matchClickNodeByStr(item, name, 0, null);
+                    if (res != null) {
+                        return res;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
     /*ok*/
     public static boolean homeGuide(AccessibilityNodeInfo root) {
