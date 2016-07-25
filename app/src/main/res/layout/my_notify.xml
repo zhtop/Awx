@@ -52,7 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/path_group" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -193,8 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/time_n" />
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -220,8 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/set_n" />
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:layout_width="wrap_content"
