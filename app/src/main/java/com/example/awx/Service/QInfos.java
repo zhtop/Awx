@@ -31,15 +31,30 @@ public class QInfos {
     public static final String more_chat_head = " com.tencent.mobileqq:id/head";
 
     /*ok*/
+    public static AccessibilityNodeInfo findNearGroup(AccessibilityNodeInfo root) {
+        AccessibilityNodeInfo parent = Nodeinfos.matchNodeByClass(root, Nodeinfos.vAList);
+        if (parent == null ? false : parent.getChildCount() > 0) {
+            while (true) {
+                AccessibilityNodeInfo resNode = Nodeinfos.matchClickNodeByStr(parent, "附近的群", 0, null);
+                if (resNode != null) {
+                    return resNode;
+                }
+                Nodeinfos.scroll(parent);
+            }
+        }
+        return null;
+    }
+
+    /*ok*/
     public static AccessibilityNodeInfo friendSearchResult(AccessibilityNodeInfo root, String name) {
         AccessibilityNodeInfo parent = Nodeinfos.matchNodeByClass(root, Nodeinfos.vAList);
-        if (parent == null ? false : parent.getChildCount() > 2) {
-            int count = 3 > parent.getChildCount() ? parent.getChildCount() : 3;
-            for (int i = 0; i < count; i++) {
+        if (parent == null ? false : parent.getChildCount() > 0) {
+            for (int i = 0; i < parent.getChildCount(); i++) {
                 AccessibilityNodeInfo item = parent.getChild(i);
                 if (item != null) {
                     AccessibilityNodeInfo res = Nodeinfos.matchClickNodeByStr(item, name, 0, null);
-                    if (res != null) {
+                    AccessibilityNodeInfo comeFrom = Nodeinfos.findByText(res, "来自分组");
+                    if (res != null && comeFrom != null) {
                         return res;
                     }
                 }
@@ -62,7 +77,7 @@ public class QInfos {
     }
 
 
-    /////////////////////////////////////
+    /*ok*/
     public static boolean addGroupData(AccessibilityNodeInfo list, Progress work) {
         for (int i = 0; i < list.getChildCount(); i++) {
             if (list.getChild(i) == null ? false : list.getChild(i).isClickable()) {
@@ -94,6 +109,7 @@ public class QInfos {
         return false;
     }
 
+    /*ok*/
     public static boolean back(AccessibilityNodeInfo root, Back backTag) {
         switch (backTag) {
             case toHome:
@@ -106,12 +122,8 @@ public class QInfos {
                 if (!backleft && !cancelSech) {
                     if (tabs(root, 1)) {
                         AccessibilityNodeInfo noti = Nodeinfos.findByText(root, "消息");
-                        if (noti != null) {
-                            noti.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                            //结束 消息  和 电话的判断
-                            //滚动到最上面，因为涉及到群搜索在里面
-                            return homeScrollToTop(root);
-                        }
+                        boolean news = noti == null ? false : noti.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                        return homeScrollToTop(root);
                     }
                 }
                 break;
@@ -123,6 +135,19 @@ public class QInfos {
         return false;
     }
 
+    public static boolean homeScrollToTop(AccessibilityNodeInfo root) {
+        AccessibilityNodeInfo scrollListNode = Nodeinfos.findById(root, home_list);
+        if (scrollListNode != null) {
+            while (true) {
+                scrollListNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD);
+                AccessibilityNodeInfo searchNode = Nodeinfos.findById(root, home_search);
+                if (searchNode != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     //    public static AccessibilityNodeInfo friendSearchResult(AccessibilityNodeInfo paramAccessibilityNodeInfo, String paramString) {
 //        paramAccessibilityNodeInfo = paramAccessibilityNodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mobileqq:id/title").iterator();
@@ -197,19 +222,6 @@ public class QInfos {
         return res;
     }
 
-    public static boolean homeScrollToTop(AccessibilityNodeInfo root) {
-        AccessibilityNodeInfo scrollListNode = Nodeinfos.findById(root, home_list);
-        if (scrollListNode != null) {
-            while (true) {
-                scrollListNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD);
-                AccessibilityNodeInfo searchNode = Nodeinfos.findById(root, home_search);
-                if (searchNode != null) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     public static boolean tabs(AccessibilityNodeInfo root, int position) {
         try {

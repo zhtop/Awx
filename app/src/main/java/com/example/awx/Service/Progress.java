@@ -1,5 +1,7 @@
 package com.example.awx.Service;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.List;
  * Created by john on 2016/7/23.
  */
 public class Progress {
-    private int actionType;
+    private int actionType = -1;
     private List<String> count = new ArrayList();
     private List<String> data = new ArrayList();
     private List<String> dataTwo = new ArrayList();
@@ -22,13 +24,14 @@ public class Progress {
     private long sleep;
     private String tipString;
     private int totalCount = 0;
+    private Handler handler;
 
-    public Progress(String paramString, int paramActionType, int paramInt) {
+    public Progress(String paramString, int paramInt, Handler handler) {
         this.packageName = paramString;
-        this.actionType = paramActionType;
         this.sleep = paramInt;
         this.last = StepType.None;
         this.next = StepType.Begin;
+        this.handler = handler;
     }
 
     public int getActionType() {
@@ -74,31 +77,25 @@ public class Progress {
     public void set(StepType paramStepType1, StepType paramStepType2, String paramString) {
         try {
             Thread.sleep(this.sleep);
-            this.last = paramStepType1;
-            this.next = paramStepType2;
-            this.tipString = paramString;
-            return;
-        } catch (InterruptedException localInterruptedException) {
-            for (; ; ) {
-                localInterruptedException.printStackTrace();
-            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        this.last = paramStepType1;
+        this.next = paramStepType2;
+        this.tipString = paramString;
     }
 
     public void set(StepType paramStepType1, StepType paramStepType2, String paramString, long paramLong) {
         long l = this.sleep;
         try {
             Thread.sleep(l + paramLong);
-            this.last = paramStepType1;
-            this.next = paramStepType2;
-            this.tipString = paramString;
-            return;
-        } catch (InterruptedException localInterruptedException) {
-            for (; ; ) {
-                localInterruptedException.printStackTrace();
-            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
+        this.last = paramStepType1;
+        this.next = paramStepType2;
+        this.tipString = paramString;
+     }
 
     public void setActionType(int paramActionType) {
         this.actionType = paramActionType;
@@ -138,5 +135,21 @@ public class Progress {
 
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
+    }
+
+    public long getSleep() {
+        return sleep;
+    }
+
+    public void setSleep(long sleep) {
+        this.sleep = sleep;
+    }
+
+    public void pushMsg(String str) {
+        if (handler != null) {
+            Message message = new Message();
+
+            handler.sendMessage(message);
+        }
     }
 }
