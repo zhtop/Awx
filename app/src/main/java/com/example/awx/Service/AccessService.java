@@ -89,8 +89,6 @@ public class AccessService extends AccessibilityService {
 
             Log.i("SE", "text:" + event.getText().toString());
             Log.i("SE", "desc:" + event.getContentDescription() + "");
-            Log.i("SE", "ids:" + event.getSource().getViewIdResourceName() + "");
-
 
         }
     }

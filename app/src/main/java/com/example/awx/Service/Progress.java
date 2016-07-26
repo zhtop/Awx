@@ -9,6 +9,7 @@ import com.example.utils.Strs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class Progress {
     private int actionType = -1;
-    private List<String> count = new ArrayList();
+    private List<StepType> count = new ArrayList();
     private List<String> data = new ArrayList();
     private List<String> dataTwo = new ArrayList();
     private StepType last;
@@ -41,7 +42,7 @@ public class Progress {
         return this.actionType;
     }
 
-    public List<String> getCount() {
+    public List<StepType> getCount() {
         return this.count;
     }
 
@@ -79,9 +80,6 @@ public class Progress {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (!Strs.isBlank(paramString)) {
-            pushMsg(paramString);
-        }
         this.last = paramStepType1;
         this.next = paramStepType2;
     }
@@ -93,9 +91,6 @@ public class Progress {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (!Strs.isBlank(paramString)) {
-            pushMsg(paramString);
-        }
         this.last = paramStepType1;
         this.next = paramStepType2;
     }
@@ -104,7 +99,7 @@ public class Progress {
         this.actionType = paramActionType;
     }
 
-    public void setCount(List<String> paramList) {
+    public void setCount(List<StepType> paramList) {
         this.count = paramList;
     }
 
@@ -145,7 +140,7 @@ public class Progress {
     }
 
     public void pushMsg(String str) {
-        if (handler != null) {
+        if (handler != null && !Strs.isBlank(str)) {
             Message message = new Message();
             message.what = 1;
             Bundle bundle = new Bundle();
@@ -177,5 +172,17 @@ public class Progress {
 
     public void setChatWord(String chatWord) {
         this.chatWord = chatWord;
+    }
+
+    public StepType getInterupt(StepType stepType) {
+        count.add(stepType);
+        if (count.size() > 100) {
+            List<StepType> listWithoutDup = new ArrayList<>(new HashSet<>(count));
+            if (listWithoutDup.size() == 1) {
+                return listWithoutDup.get(0);
+            }
+            count.clear();
+        }
+        return StepType.None;
     }
 }

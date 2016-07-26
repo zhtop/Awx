@@ -2,6 +2,8 @@ package com.example.awx.Service;
 
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.example.utils.Strs;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,10 @@ public class MInfo {
     public static final String contact_list = "com.tencent.mm:id/fu";
     public static final String group_item_text = "com.tencent.mm:id/gi";
     public static final String group_list = "com.tencent.mm:id/fu";
+    public static final String group_people_name_p = "com.tencent.mm:id/c0v";
+    public static final String group_detail_title = "android:id/title";
+    public static final String group_detail_list = "android:id/list";
+
 
     public static final String top_search_bar = "android:id/action_bar";
     public static final String top_search_input = "com.tencent.mm:id/ew";
@@ -32,7 +38,6 @@ public class MInfo {
     public static final String chat_send = "com.tencent.mm:id/z1";
     public static final String chat_input_noise = "com.tencent.mm:id/yx";
     public static final String chat_input_left = "com.tencent.mm:id/yt";
-
 
     public static final String near_people_set_nextTime = "com.tencent.mm:id/b3s";
     public static final String near_people_set_ok = "com.tencent.mm:id/bhe";
@@ -97,13 +102,22 @@ public class MInfo {
     }
 
     public static AccessibilityNodeInfo homeSearchInputNode(AccessibilityNodeInfo root) {
-        AccessibilityNodeInfo list = Nodeinfos.findById(root, top_search_input);
+        AccessibilityNodeInfo homesearchNode = Nodeinfos.matchClickNodeByStr(root, "搜索", 1, null);
         AccessibilityNodeInfo clear = Nodeinfos.findById(root, top_search_clean);
-        if (list != null) {
+        if (homesearchNode != null) {
             if (clear != null) {
                 clear.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             }
-            return list;
+            return homesearchNode;
+        }
+        return null;
+    }
+
+    public static AccessibilityNodeInfo topSearchInputNode(AccessibilityNodeInfo root) {
+        Nodeinfos.click(Nodeinfos.findById(root, MInfo.top_search_clean));
+        AccessibilityNodeInfo inputNode = Nodeinfos.findById(root, MInfo.top_search_input);
+        if (inputNode != null) {
+            return inputNode;
         }
         return null;
     }
@@ -172,5 +186,43 @@ public class MInfo {
             }
         }
         return res;
+    }
+
+    public static int groupPeopleDataFetch(AccessibilityNodeInfo root, Progress progress) {
+        List<AccessibilityNodeInfo> items = root.findAccessibilityNodeInfosByViewId(group_people_name_p);
+        if (items.size() > 0) {
+            for (int i = 0; i < items.size(); i++) {
+                if (!Strs.isEmpty(items.get(i).getText())) {
+                    String name = items.get(i).getText().toString();
+                    if (!progress.getDataTwo().contains(name)) {
+                        progress.getDataTwo().add(name);
+                        Utils.mi(name, "");
+                        progress.getNodes().add(items.get(i).getParent());
+                    }
+                }
+            }
+            if (progress.getNodes().size() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        return -1;
+    }
+
+    public static AccessibilityNodeInfo searchResultNode(AccessibilityNodeInfo root, String str) {
+        List<AccessibilityNodeInfo> parent = root.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/aq6");
+        if (parent.size() > 0) {
+            for (int i = 0; i < parent.size(); i++) {
+                AccessibilityNodeInfo item = parent.get(i);
+                if (item != null) {
+                    AccessibilityNodeInfo resNode = Nodeinfos.findByText(item, str);
+                    if (resNode != null) {
+                        return resNode.getParent();
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
