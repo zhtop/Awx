@@ -38,11 +38,11 @@ public class Datas {
         }
     }
 
-    public static void addItemToData(SQLiteDatabase sqLiteDatabase, String name, String table) {
+    public static long addItemToData(SQLiteDatabase sqLiteDatabase, String name, String table) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("names", name);
         contentValues.put("dates", Dates.getNowDate());
-        sqLiteDatabase.insert(table, null, contentValues);
+        return sqLiteDatabase.insert(table, null, contentValues);
     }
 
 }
