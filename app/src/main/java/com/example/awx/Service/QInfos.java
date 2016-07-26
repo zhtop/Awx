@@ -47,17 +47,13 @@ public class QInfos {
 
     /*ok*/
     public static AccessibilityNodeInfo findNearGroup(AccessibilityNodeInfo root) {
-        AccessibilityNodeInfo parent = Nodeinfos.matchNodeByClass(root, Nodeinfos.vAList);
-        if (parent == null ? false : parent.getChildCount() > 0) {
-            while (true) {
-                AccessibilityNodeInfo resNode = Nodeinfos.matchClickNodeByStr(parent, "附近的群", 0, null);
-                if (resNode != null) {
-                    return resNode;
-                }
-                Nodeinfos.scroll(parent);
+        while (true) {
+            AccessibilityNodeInfo resNode = Nodeinfos.matchClickNodeByStr(root, "附近的群", 0, null);
+            if (resNode != null) {
+                return resNode;
             }
+            Nodeinfos.scroll(root);
         }
-        return null;
     }
 
     /*ok*/
