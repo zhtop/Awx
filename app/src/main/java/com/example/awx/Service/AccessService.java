@@ -120,6 +120,7 @@ public class AccessService extends AccessibilityService {
             wLayoutParams.gravity = Gravity.CENTER;
             wLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
             wLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            wLayoutParams.y=-300;
         }
         try {
             windowManager.updateViewLayout(floatView, wLayoutParams);
