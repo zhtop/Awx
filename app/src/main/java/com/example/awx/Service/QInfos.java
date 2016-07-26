@@ -31,6 +31,8 @@ public class QInfos {
     public static final String more_chat_head = " com.tencent.mobileqq:id/head";
     public static final String chat_item = "com.tencent.mobileqq:id/chat_item_content_layout";
 
+    public static final String continuing = "com.tencent.mobileqq:id/dialogLeftBtn";
+
 
     public static AccessibilityNodeInfo findLastChatItemOfText(AccessibilityNodeInfo root) {
         List<AccessibilityNodeInfo> chatList = root.findAccessibilityNodeInfosByViewId(chat_item);
